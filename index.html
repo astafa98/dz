@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 1
+      let counter = {};
+      counter.key = "value";
+
+      // 2
+      let counter = new Object({ key: "value" });
+
+      // 3
+      function Counter(key, value) {
+        this.key = key;
+        this.value = value;
+      }
+      let counter = new Counter("key", "value");
+
+      //4
+      let counter = Object.create(null);
+      counter.key = "value";
+
+      // копирование
+      1;
+      let counterCopy = counter;
+      2;
+      let counterCopy = {};
+      for (let key in counter) {
+        counterCopy[key] = counter[key];
+      }
+      3;
+      let counterCopy = {};
+      Object.assign(counterCopy, counter);
+      console.log(counterCopy);
+
+      //функция makeCounter
+
+      function makeCounter() {}
+
+      let makeCounter = function () {};
+
+      let makeCounter = () => {};
+
+      //B1
+
+      const obj1 = { here: { is: "on", other: "3" }, object: "Z" };
+      const obj2 = { here: { is: "on", other: "2" }, object: "Z" };
+
+      const deepEqual = (a, b) => {
+        if (a === b) return true;
+
+        if (
+          a == null ||
+          typeof a !== "object" ||
+          b == null ||
+          typeof b !== "object"
+        )
+          return false;
+
+        const keysA = Object.keys(a);
+        const keysB = Object.keys(b);
+
+        if (keysA.length !== keysB.length) return false;
+
+        for (let key of keysA) {
+          if (!keysB.includes(key) || !deepEqual(a[key], b[key])) return false;
+        }
+
+        return true;
+      };
+
+      //B2
+
+      function reverseStr(str) {
+        return str.split("").reverse().join("");
+      }
+    </script>
+  </body>
+</html>
